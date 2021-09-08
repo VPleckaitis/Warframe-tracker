@@ -49,10 +49,10 @@ namespace VPleckaitis.Mobile.Warframe.ViewModels
 
         private async void OnSave()
         {
-            Item newItem = new Item()
+            Alert newItem = new Alert()
             {
                 Id = Guid.NewGuid().ToString(),
-                Text = Text,
+                Title = Text,
                 Description = Description
             };
 

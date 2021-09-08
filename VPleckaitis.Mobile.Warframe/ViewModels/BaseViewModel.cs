@@ -10,7 +10,7 @@ namespace VPleckaitis.Mobile.Warframe.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public IDataStore<Alert> DataStore => DependencyService.Get<IDataStore<Alert>>();
 
         bool isBusy = false;
         public bool IsBusy

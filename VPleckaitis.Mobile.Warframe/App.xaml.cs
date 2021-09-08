@@ -13,7 +13,7 @@ namespace VPleckaitis.Mobile.Warframe
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+            DependencyService.Register<AlertsDataStore>();
             MainPage = new AppShell();
         }
 

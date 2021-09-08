@@ -10,20 +10,20 @@ namespace VPleckaitis.Mobile.Warframe.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {
-        private Item _selectedItem;
+        private Alert _selectedItem;
 
-        public ObservableCollection<Item> Items { get; }
+        public ObservableCollection<Alert> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get; }
-        public Command<Item> ItemTapped { get; }
+        public Command<Alert> ItemTapped { get; }
 
         public ItemsViewModel()
         {
             Title = "Browse";
-            Items = new ObservableCollection<Item>();
+            Items = new ObservableCollection<Alert>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            ItemTapped = new Command<Item>(OnItemSelected);
+            ItemTapped = new Command<Alert>(OnItemSelected);
 
             AddItemCommand = new Command(OnAddItem);
         }
@@ -57,7 +57,7 @@ namespace VPleckaitis.Mobile.Warframe.ViewModels
             SelectedItem = null;
         }
 
-        public Item SelectedItem
+        public Alert SelectedItem
         {
             get => _selectedItem;
             set
@@ -72,7 +72,7 @@ namespace VPleckaitis.Mobile.Warframe.ViewModels
             await Shell.Current.GoToAsync(nameof(NewItemPage));
         }
 
-        async void OnItemSelected(Item item)
+        async void OnItemSelected(Alert item)
         {
             if (item == null)
                 return;
