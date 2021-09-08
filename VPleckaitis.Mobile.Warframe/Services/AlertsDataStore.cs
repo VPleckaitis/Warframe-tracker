@@ -13,21 +13,12 @@ namespace VPleckaitis.Mobile.Warframe.Services
         private const string dataUrl = "rss.php";
         List<Alert> items;
 
+        // 2DO - optimise this
         public AlertsDataStore()
         {
             var content = Helpers.HttpClientEx.Client.GetAsync(dataUrl).GetAwaiter().GetResult();
-
             var lst = content.Map<List<RssFeedModel>>();
-
-            items = new List<Alert>()
-            {
-                new Alert { Id = Guid.NewGuid().ToString(), Title = "First item", Description="This is an item description." },
-                new Alert { Id = Guid.NewGuid().ToString(), Title = "Second item", Description="This is an item description." },
-                new Alert { Id = Guid.NewGuid().ToString(), Title = "Third item", Description="This is an item description." },
-                new Alert { Id = Guid.NewGuid().ToString(), Title = "Fourth item", Description="This is an item description." },
-                new Alert { Id = Guid.NewGuid().ToString(), Title = "Fifth item", Description="This is an item description." },
-                new Alert { Id = Guid.NewGuid().ToString(), Title = "Sixth item", Description="This is an item description." }
-            };
+            items = lst.Select(i => i.Map<Alert>()).ToList();
         }
 
         public async Task<bool> AddItemAsync(Alert item)
